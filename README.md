@@ -90,9 +90,6 @@ This results in a maxmium possible number of total value queries in PVM per bidd
 
 Finally, we run the PVM algorithm:
 
-	RESULT = PVM(scaler=scaler, caps=caps, L=L, parameters=DNN_parameters, epochs=epochs, batch_size=batch_size,
-		     model_name=model_name, sample_weight_on=sample_weight_on, sample_weight_scaling=sample_weight_scaling,
-		     min_iteration=min_iteration, seed_instance=seed_instance, regularization_type=regularization_type,
-                     Mip_bounds_tightening=Mip_bounds_tightening, warm_start=warm_start)
+	RESULT = PVM(scaler=scaler, caps=caps, L=L, parameters=DNN_parameters, epochs=epochs, batch_size=batch_size, model_name=model_name, sample_weight_on=sample_weight_on, sample_weight_scaling=sample_weight_scaling, min_iteration=min_iteration, seed_instance=seed_instance, regularization_type=regularization_type, Mip_bounds_tightening=Mip_bounds_tightening, warm_start=warm_start)
 
 The full example can be found [here](source/pvm.py).
