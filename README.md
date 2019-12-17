@@ -28,6 +28,7 @@ Requires Python 3.6 and Java 8 (or later).
 * keras 2.2.4
 * numpy 1.14.6
 * sklearn 0.20.0
+* cython 0.28.2
 
 ## Example: How to run PVM for a specific valuation model provided from the Spectrum Auction Test Suite (SATS).
 To demonstrate how to configure our algorithm, we include an example of the Global Synergy Value Model (GSVM) (Goeree and
