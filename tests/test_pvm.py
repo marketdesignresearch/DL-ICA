@@ -4,17 +4,17 @@
 """
 FILE DESCRIPTION:
 
-This file presents an example of how to run the PVM mechanism wit the function PVM() from the file PVM_github.py
+This file presents an example of how to run the PVM mechanism wit the function pvm() from the file pvm.py
 
 """
 
 # Libs
 import logging
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler  # used only for MRVM
 import pandas as pd
 
 # Own Modules
-from PVM_github import PVM
+from source.pvm import pvm
 
 __author__ = 'Jakob Weissteiner'
 __copyright__ = 'Copyright 2019, Deep Learning-powered Iterative Combinatorial Auctions: Jakob Weissteiner and Sven Seuken'
@@ -141,7 +141,7 @@ print('Sample weight scaling:', sample_weight_scaling)
 # (3) MIP parameters
 L = 3000
 Mip_bounds_tightening = 'IA'   # False ,'IA' or 'LP'
-warm_start = True
+warm_start = False
 print('\n------------------------ MIP  parameters ------------------------')
 print('Mip_bounds_tightening:', Mip_bounds_tightening)
 print('Warm_start:', warm_start)
@@ -157,7 +157,7 @@ print('Seed: ', seed_instance)
 print('min_iteration:', min_iteration)
 # %% Start DNN-based PVM
 
-RESULT = PVM(scaler=scaler, caps=caps, L=L, parameters=DNN_parameters, epochs=epochs, batch_size=batch_size, model_name=model_name, sample_weight_on=sample_weight_on,
+RESULT = pvm(scaler=scaler, caps=caps, L=L, parameters=DNN_parameters, epochs=epochs, batch_size=batch_size, model_name=model_name, sample_weight_on=sample_weight_on,
              sample_weight_scaling=sample_weight_scaling, min_iteration=min_iteration, seed_instance=seed_instance, regularization_type=regularization_type,
              Mip_bounds_tightening=Mip_bounds_tightening, warm_start=warm_start)
 

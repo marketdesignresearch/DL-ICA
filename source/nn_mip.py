@@ -52,7 +52,7 @@ NN_MIP has the following functionalities:
         only_zeros = returns the number of upper bounds equal to zero => this node can be canelled from the MIP formulation.
         This method prints the upper bounds for every node of the neural network.
 
-See Test_Class_NN_MIP_github.py for an example of how to use the class NN_MIP.
+See test_nn_mip.py for an example of how to use the class NN_MIP.
 """
 
 # Libs
@@ -76,7 +76,7 @@ __status__ = 'Dev'
 # %% Neural Net Optimization Class
 
 
-class NN_MIP:
+class NNMIP:
 
     def __init__(self, models, L=None):
 

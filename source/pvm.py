@@ -21,6 +21,9 @@ The function PVM() runs the DNN-based Pseudo-VCG-Mechanism and outputs the effic
     regularization_type = regularization for training DNNs (string). Can be 'l1', 'l2' or 'l1_l2'.
     Mip_bounds_tightening = procedure for bound tightening in MIP reformulatio of the DNN-based WDP. Can be 'IA' (Intervall Arithmetic), 'LP' (LP-Reölaxations) or 'False'
     warm_start = boolean determines if a solution to the MIP  of the previous iteration in the PEA should be used as a warm start for the MIP formulation of the DNN-based WDP.
+
+See test_pvm.py for an example of how to use the function PVM.
+
 """
 
 # Libs
@@ -30,8 +33,8 @@ import random
 from keras import backend as K
 
 # Own Modules
-from PySats import PySats
-from Class_Economies_github import Economies
+from source.pysats import PySats
+from source.economies import Economies
 
 __author__ = 'Jakob Weissteiner'
 __copyright__ = 'Copyright 2019, Deep Learning-powered Iterative Combinatorial Auctions: Jakob Weissteiner and Sven Seuken'
@@ -43,7 +46,7 @@ __status__ = 'Dev'
 # %% PVM MECHANISM SINGLE RUN
 
 
-def PVM(scaler, caps, L, parameters, epochs, batch_size, model_name, sample_weight_on, sample_weight_scaling, min_iteration, seed_instance, regularization_type, Mip_bounds_tightening, warm_start):
+def pvm(scaler, caps, L, parameters, epochs, batch_size, model_name, sample_weight_on, sample_weight_scaling, min_iteration, seed_instance, regularization_type, Mip_bounds_tightening, warm_start):
     start0 = time.time()
     if not scaler:
         scaler = None

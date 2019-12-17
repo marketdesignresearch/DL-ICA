@@ -35,7 +35,7 @@ It consists of a class called _Mrvm that has the following functionalities:
     5.METHOD: get_efficient_allocation(self):
         Returns the efficient, i.e., optimal, allocation (as dict) and the corresponding social welfare (float) of the _Mrvm instance.
 
-This class should not be called directly. Instead it should be used only via the class PySats.py. See Test_javabridge.py for an example of how to use the class  _Mrvm.
+This class should not be called directly. Instead it should be used only via the class pysats.py. See test_javabridge.py for an example of how to use the class  _Mrvm.
 """
 
 # Libs

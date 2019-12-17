@@ -31,11 +31,11 @@ __status__ = 'Dev'
 # scaler = scale the y values across all bidders, fit on the selected training set and apply on the validation set
 
 
-def initial_bids_pvm_UNIF(value_model, c0, bidder_ids, scaler=None):
+def initial_bids_pvm_unif(value_model, c0, bidder_ids, scaler=None):
     initial_bids = OrderedDict()
     for bidder_id in bidder_ids:
         logging.debug('Set up intial Bids for: Bidder_{}'.format(bidder_id))
-        D = UNIF_random_bids(value_model=value_model, bidder_id=bidder_id, size=c0)
+        D = unif_random_bids(value_model=value_model, bidder_id=bidder_id, size=c0)
         # add zero bundle
         null = np.zeros(D.shape[1]).reshape(1, -1)
         D = np.append(D, null, axis=0)
@@ -94,7 +94,7 @@ def initial_bids_pvm(value_model, c0, bidder_ids, scaler=None, seed=None):
 # fitted_scaler = the fitted scaler used in the valuation model.
 
 
-def format_solution_MIP_new(Mip, elicited_bids, bidder_names, fitted_scaler):
+def format_solution_mip_new(Mip, elicited_bids, bidder_names, fitted_scaler):
     tmp = {'good_ids': [], 'value': 0}
     Z = OrderedDict()
     for bidder_name in bidder_names:
@@ -115,7 +115,7 @@ def format_solution_MIP_new(Mip, elicited_bids, bidder_names, fitted_scaler):
 # size = number of bundle-value pairs.
 
 
-def UNIF_random_bids(value_model, bidder_id, size):
+def unif_random_bids(value_model, bidder_id, size):
     ncol = len(value_model.get_good_ids())  # number of items in value model
     D = np.unique(np.random.choice(2, size=(size, ncol)), axis=0)
     # get unique ones if accidently sampled equal bundle

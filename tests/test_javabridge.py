@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 """
-This file shows examples of how to use the jave-python bridge file PySats.py and create auction instances of the three valuation models Local Synergy Value Model (LSVM), Global Synergy Value Model (GSVM), Multi Region Value Model (MRVM)
+This file shows examples of how to use the jave-python bridge file pysats.py and create auction instances of the three valuation models Local Synergy Value Model (LSVM), Global Synergy Value Model (GSVM), Multi Region Value Model (MRVM)
 """
 
 # Libs
 import numpy as np
 
 # Own modules
-from PySats import PySats
+from source.pysats import PySats
 
 __author__ = 'Jakob Weissteiner'
 __copyright__ = 'Copyright 2019, Deep Learning-powered Iterative Combinatorial Auctions: Jakob Weissteiner and Sven Seuken'
@@ -19,9 +19,9 @@ __maintainer__ = 'Jakob Weissteiner'
 __email__ = 'weissteiner@ifi.uzh.ch'
 __status__ = 'Dev'
 
-###############################################
-# LSVM,GSVM and MRVM class & functionalities: #
-###############################################
+################################################
+# LSVM, GSVM and MRVM class & functionalities: #
+################################################
 # %%
 # create instance with the default parmetrization of bidder types.
 G = PySats.getInstance().create_gsvm(seed=1, number_of_national_bidders=1, number_of_regional_bidders=5)

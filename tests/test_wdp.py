@@ -4,14 +4,14 @@
 """
 FILE DESCRIPTION:
 
-This file presents examples of how to use the WDP class from file Class_WDP_github.py
+This file presents examples of how to use the class WDP from file wdp.py
 """
 
 # Libs
 import numpy as np
 
 # Own Modules
-from Class_WDP_github import WDP
+from source.wdp import WDP
 
 __author__ = 'Jakob Weissteiner'
 __copyright__ = 'Copyright 2019, Deep Learning-powered Iterative Combinatorial Auctions: Jakob Weissteiner and Sven Seuken'

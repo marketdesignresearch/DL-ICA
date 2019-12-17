@@ -4,14 +4,14 @@
 """
 FILE DESCRIPTION:
 
-This file presents examples of how to use the Economies class from file Class_Economies_github.py
+This file presents examples of how to use the class Economies from file economies.py
 """
 
 # Libs
 import logging
 # Own Modules
-from Class_Economies_github import Economies
-from PySats import PySats
+from source.economies import Economies
+from source.pysats import PySats
 
 __author__ = 'Jakob Weissteiner'
 __copyright__ = 'Copyright 2019, Deep Learning-powered Iterative Combinatorial Auctions: Jakob Weissteiner and Sven Seuken'
@@ -136,7 +136,7 @@ E.set_initial_bids(seeds_random_bids=None)  # create c0 inital bids V^0, uniform
 E.elicited_bids  # look them up
 parameters  # look them up
 E.set_NN_parameters(parameters=parameters)   # set DNN parameters
-sample_weight_on = False
+sample_weight_on = True
 sample_weight_scaling = [30, 10, 10, 10, 10, 10]  # (not used in AAAI 2020 paper) Scaling vector for errors for the 6 bidders in LSVM. Since the MAE error for the national bidder is usually larger the corretion weight for the this datapoint in for next training of DNNs is MAE/30. For the regional bidders it is MAE/10.
 # activate weights (not used in AAAI 2020 paper)
 if sample_weight_on:

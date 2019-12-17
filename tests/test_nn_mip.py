@@ -4,7 +4,7 @@
 """
 FILE DESCRIPTION:
 
-This file presents examples of how to use the NN class from file Class_NN_github.py
+This file presents examples of how to use the class NNMIP from file nn_mip.py
 """
 
 # Libs
@@ -16,7 +16,7 @@ from docplex.mp.solution import SolveSolution
 # http://ibmdecisionoptimization.github.io/docplex-doc/mp/docplex.mp.model.html
 
 # Own Modules
-from Class_NN_MIP_github import NN_MIP
+from source.nn_mip import NNMIP
 
 __author__ = 'Jakob Weissteiner'
 __copyright__ = 'Copyright 2019, Deep Learning-powered Iterative Combinatorial Auctions: Jakob Weissteiner and Sven Seuken'
@@ -76,7 +76,7 @@ print(KM2.predict(np.array([[0, 1]])))
 print(KM2.predict(np.array([[1, 1]])))
 # %%
 # (1) without tightening bounds
-X = NN_MIP(models=NNs, L=1000)  # initialize NN_MIP instances
+X = NNMIP(models=NNs, L=1000)  # initialize NN_MIP instances
 X.initialize_mip(verbose=True)  # initialize Mip attribute in this class
 s = X.solve_mip(log_output=True, time_limit=None, mip_start=None)  # solve Mip
 print(s)  # print solution
@@ -89,7 +89,7 @@ X  # check echoe on python shell
 
 # (2) with tightening bounds IA
 del X
-X = NN_MIP(NNs, L=1000)
+X = NNMIP(NNs, L=1000)
 X.tighten_bounds_IA(upper_bound_input=[1, 1])  # tighten bounds with IA
 X.print_upper_bounds()  # print upper bounds
 X.initialize_mip(verbose=True)
@@ -102,7 +102,7 @@ X
 
 # (3) with tightening bounds LP
 del X
-X = NN_MIP(NNs, L=1000)
+X = NNMIP(NNs, L=1000)
 X.tighten_bounds_LP(upper_bound_input=[1, 1])  # tighten bounds with LP
 X.print_upper_bounds()  # print upper bounds
 X.initialize_mip(verbose=True)
@@ -115,7 +115,7 @@ X
 
 # (4) re-solve with a warm start
 start = s.as_dict()
-X = NN_MIP(NNs, L=1000)
+X = NNMIP(NNs, L=1000)
 X.initialize_mip(verbose=True)
 X.solve_mip(mip_start=SolveSolution(X.Mip, start))
 X.x_star

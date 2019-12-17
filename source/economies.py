@@ -30,7 +30,7 @@ Economies has the following functionalities:
     3.METHOD: set_initial_bids(self, seeds_random_bids)
         seeds_random_bids = seed used for random sampling of the initial bids
         This method creates sets of initial bundle-value pairs, sets the elicited bids attribute and the scaler attribute, i.e., bids.
-        It calls the function util_github.initial_bids_pvm_UNIF (uniformly at random from the bundle space 2^m) or util_github.initial_bids_pvm (SATS sampling via Normal Distribution see 4.METHOD in Gsvm.py for example.)
+        It calls the function util.initial_bids_pvm_unif (uniformly at random from the bundle space 2^m) or util.initial_bids_pvm (SATS sampling via Normal Distribution see 4.METHOD in Gsvm.py for example.)
     4.METHOD: reset_argmax_allocations(self)
         This method cleares the argmax allocation a^(t) from the round t.
     5.METHOD: reset_weights(self, economy_key)
@@ -84,13 +84,12 @@ Economies has the following functionalities:
     18.METHOD: calculate_payments(self)
         This method calculates the VCG-style payments. (see Algorithm 2 in Section 2)
 
-See Test_Class_Economies_github.py for an example of how to use the class Economies.
+See test_economies.py for an example of how to use the class Economies.
 """
 
 # Libs
 import itertools
 import sys
-import util_github
 import numpy as np
 import time
 import re
@@ -103,9 +102,10 @@ import docplex
 # http://ibmdecisionoptimization.github.io/docplex-doc/mp/docplex.mp.model.html
 
 # Own Modules
-from Class_NN_github import NN
-from Class_NN_MIP_github import NN_MIP
-from Class_WDP_github import WDP
+import source.util as util
+from source.nn import NN
+from source.nn_mip import NNMIP
+from source.wdp import WDP
 
 
 __author__ = 'Jakob Weissteiner'
@@ -115,10 +115,7 @@ __version__ = '0.1.0'
 __maintainer__ = 'Jakob Weissteiner'
 __email__ = 'weissteiner@ifi.uzh.ch'
 __status__ = 'Dev'
-# %%
 
-# %% MAIN PATH FOR UNSOLVED MIP EXPORTs
-PATH = '/home/user/weissteiner/PVM/unsolved_Mips'
 # %%
 
 
@@ -208,8 +205,8 @@ class Economies:
     def set_initial_bids(self, seeds_random_bids):
         for key, value in self.economies.items():
             logging.debug(key)
-            self.elicited_bids[key] = util_github.initial_bids_pvm_UNIF(value_model=self.value_model, c0=self.c0, bidder_ids=value, scaler=self.scaler)  # TRUE UNIFORM SAMPLING
-            # self.elicited_bids[key] = util_github.initial_bids_pvm(value_model=self.value_model, c0=self.c0, bidder_ids=value, scaler=self.scaler, seed=seeds_random_bids)  # SATS RANDOM SAMPLING VIA NORMAL DISTRIBUTION
+            self.elicited_bids[key] = util.initial_bids_pvm_unif(value_model=self.value_model, c0=self.c0, bidder_ids=value, scaler=self.scaler)  # TRUE UNIFORM SAMPLING
+            # self.elicited_bids[key] = util.initial_bids_pvm(value_model=self.value_model, c0=self.c0, bidder_ids=value, scaler=self.scaler, seed=seeds_random_bids)  # SATS RANDOM SAMPLING VIA NORMAL DISTRIBUTION
             self.fitted_scaler[key] = self.elicited_bids[key][1]
 
     def reset_argmax_allocations(self):
@@ -327,7 +324,7 @@ class Economies:
         logging.debug('-----------------------------------------------')
         for attempt in range(0, 5):
             logging.debug('Initialize MIP')
-            X = NN_MIP(DNNs, L=self.L)
+            X = NNMIP(DNNs, L=self.L)
             if not self.Mip_bounds_tightening:
                 X.initialize_mip(verbose=False)
             elif self.Mip_bounds_tightening == 'IA':
@@ -361,8 +358,7 @@ class Economies:
                 logging.debug(e)
                 logging.debug(X)
                 if attempt == 4:
-                    X.Mip.export_as_lp(path=PATH,
-                                       basename='UNSOLVED MIP in Iteration {} from economy'.format(self.iteration[economy_key]) + re.sub('[{}]', '', economy_key), hide_user_names=False)
+                    X.Mip.export_as_lp(basename='UNSOLVED MIP in Iteration {} from economy'.format(self.iteration[economy_key]) + re.sub('[{}]', '', economy_key), hide_user_names=False)
                     sys.exit('STOP, not solved succesfully in {} attempts'.format(attempt+1))
                 K.clear_session()
                 # LINE 4: RE-FITTING STEP
@@ -559,7 +555,7 @@ class Economies:
                 X = WDP(elicited_bids)
                 X.initialize_mip(verbose=False)
                 X.solve_mip()
-                allocation_PA = util_github.format_solution_MIP_new(Mip=X.Mip, elicited_bids=elicited_bids, bidder_names=self.economies_names[economy_key], fitted_scaler=self.fitted_scaler[economy_key])
+                allocation_PA = util.format_solution_mip_new(Mip=X.Mip, elicited_bids=elicited_bids, bidder_names=self.economies_names[economy_key], fitted_scaler=self.fitted_scaler[economy_key])
                 value_PA = X.Mip.objective_value
                 if self.fitted_scaler[economy_key] is not None:
                     logging.debug('Queried Value scaled by: %s', self.fitted_scaler[economy_key].scale_)
@@ -582,7 +578,7 @@ class Economies:
             X = WDP(elicited_bids)
             X.initialize_mip(verbose=False)
             X.solve_mip()
-            allocation_PA = util_github.format_solution_MIP_new(Mip=X.Mip, elicited_bids=elicited_bids, bidder_names=self.economies_names[economy_key], fitted_scaler=self.fitted_scaler[economy_key])
+            allocation_PA = util.format_solution_mip_new(Mip=X.Mip, elicited_bids=elicited_bids, bidder_names=self.economies_names[economy_key], fitted_scaler=self.fitted_scaler[economy_key])
             value_PA = X.Mip.objective_value
             if self.scaler is not None:
                 logging.debug('Mip Objective Value scaled by: %s', self.fitted_scaler[economy_key].scale_)

@@ -28,7 +28,7 @@ This file implements the class NN (Neural Network) that has the following functi
         scale = either None or 'log' defining the scaling of the y-axis for the plots
         This method calculates losses on the training set and the test set (if specified) and plots a goodness of fit plot.
 
-See Test_Class_NN_github.py for an example of how to use the class  NN.
+See test_nn.py for an example of how to use the class NN.
 
 """
 
