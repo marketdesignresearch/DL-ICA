@@ -17,10 +17,17 @@ If you use this software for academic purposes, please cite the above in your wo
 }
 ```
 
-## Installation
-
+## Installation ##
 Requires Python 3.6 and Java 8 (or later).
-Dependencies are CPLEX and SATS (http://spectrumauctions.org/). The file sats.jar is already provided in source/lib. The file cplex.jar needs to be added to the same folder: source/lib.
+
+### Dependencies: ###
+* CPLEX 12.8.0.0: The file cplex.jar is provided in source/lib.
+* SATS 0.6.4: (http://spectrumauctions.org/). The file sats.jar is provided in source/lib.
+* docplex 2.4.61
+* tensorflow 1.13.1
+* keras 2.2.4
+* numpy 1.14.6
+* sklearn 0.20.0
 
 ## Example: How to run PVM for a specific valuation model provided from the Spectrum Auction Test Suite (SATS).
 To demonstrate how to configure our algorithm, we include an example of the Global Synergy Value Model (GSVM) (Goeree and
