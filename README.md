@@ -1,6 +1,6 @@
 # Deep-Learning-powered-Iterative-Combinatorial Auctions
 
-This is a piece of software used for computing the outcome of the Deep Neural Networks based Pseudo VCG Mechanism (PVM). The algorithm is described in detail in the following paper:
+This is a piece of software used for computing the outcome of the Pseudo VCG Mechanism (PVM) based on deep neural networks (DNNs). The algorithm is described in detail in the following paper:
 
 **Deep Learning-powered Iterative Combinatorial Auctions**  
 Jakob Weissteiner and Sven Seuken. In Proceedings of the Thirty-fourth AAAI Conference on Artificial Intelligence (AAAI-20), New York, NY, February 2020. Forthcoming. Working paper version from Dec 2019: [[pdf](https://arxiv.org/pdf/1907.05771.pdf)]
