@@ -123,4 +123,4 @@ RESULT = PVM(
     Mip_bounds_tightening=Mip_bounds_tightening, warm_start=warm_start)
 ```
 
-The full example can be found [here](source/test_pvm.py).
+The full example can be found [here](source/tests/test_pvm.py).
