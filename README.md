@@ -37,6 +37,15 @@ $ pip install -r requirements.txt
 ...
 ```
 
+## Tests
+
+To run the tests (e.g., `test_pvm.py`), you currently need to do the following in an environment prepared as described above:
+
+```bash
+$ python -m tests.test_pvm
+...
+```
+
 ## Example: How to run PVM for a specific valuation model provided from the Spectrum Auction Test Suite (SATS)
 
 To demonstrate how to configure our algorithm, we include an example of the Global Synergy Value Model (GSVM) (Goeree and Holt 2010). GSVM consists of 6 regional bidders, 1 national bidder, and 18 items.
