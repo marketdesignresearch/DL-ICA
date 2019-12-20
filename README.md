@@ -28,22 +28,18 @@ If you use this software for academic purposes, please cite the above in your wo
 
 ## Dependencies
 
-Prepare your python environment (whether you do that with `conda`, `virtualenv`, etc.) and enter this environment. You need to install Cython manually before to make sure the following command works.
+Prepare your python environment (whether you do that with `pip`, `conda`, `virtualenv`, etc.) and enter this environment. 
 
+Using pip:
 ```bash
 $ pip install Cython==0.28.2
 ...
 $ pip install -r requirements.txt
 ...
 ```
-
-## Tests
-
-To run the tests (e.g., `test_pvm.py`), you currently need to do the following in an environment prepared as described above:
-
+Using conda:
 ```bash
-$ python -m tests.test_pvm
-...
+$ conda install --file requirements.txt
 ```
 
 ## Example: How to run PVM for a specific valuation model provided from the Spectrum Auction Test Suite (SATS)
