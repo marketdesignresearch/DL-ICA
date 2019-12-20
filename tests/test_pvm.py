@@ -39,7 +39,7 @@ M = 18  # number of items
 bidder_types = 2
 bidder_ids = list(range(0, 6))
 scaler = False
-print('\n############### SATS parameters ###############')
+print('\n------------------------ SATS parameters ------------------------')
 print('Value Model:', model_name)
 print('Number of Bidders: ', N)
 print('Number of BidderTypes: ', bidder_types)
