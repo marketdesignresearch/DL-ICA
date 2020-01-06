@@ -44,7 +44,7 @@ dropout_rate = 0.1  # droput rate
 NN_parameters = OrderedDict([('Bidder_0', (1e-05, 0.01, [10, 10, 10], dropout, dropout_rate)), ('Bidder_1', (1e-05, 0.01, [32, 32], dropout, dropout_rate)),
                              ('Bidder_2', (1e-05, 0.01, [32, 32], dropout, dropout_rate)), ('Bidder_3', (1e-05, 0.01, [32, 32], dropout, dropout_rate)),
                              ('Bidder_4', (1e-05, 0.01, [32, 32], dropout, dropout_rate)), ('Bidder_5', (1e-05, 0.01, [32, 32], dropout, dropout_rate))])
-# %%  Test the class for a single bidder.
+# %%  Test the class NN for a single bidder.
 key = 'Bidder_0'  # set bidder
 Bids = D[0]
 fitted_scaler = D[1]

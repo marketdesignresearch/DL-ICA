@@ -84,7 +84,7 @@ Economies has the following functionalities:
     18.METHOD: calculate_payments(self)
         This method calculates the VCG-style payments. (see Algorithm 2 in Section 2)
 
-See test_economies.py for an example of how to use the class Economies.
+See example_economies.py for an example of how to use the class Economies.
 """
 
 # Libs

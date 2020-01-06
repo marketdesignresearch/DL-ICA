@@ -9,7 +9,7 @@ This file is a wrapper for the Java-Python "bridges" Lsvm.py, Gsvm.py and Mrvm.p
     The Global Synergy Value Model (GSVM): PySats.getInstance().create_gsvm() creates a instance from the class _Gsvm (see Gsvm.py)
     The Multi Region Value Model (MRVM): PySats.getInstance().create_mrvm() creates a instance from the class _Mrvm (see Mrvm.py)
 
-See test_javabridge.py for an example of how to use the class PySats.
+See example_javabridge.py for an example of how to use the class PySats.
 """
 
 # Libs

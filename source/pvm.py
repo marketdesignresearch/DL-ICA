@@ -22,7 +22,7 @@ The function PVM() runs the DNN-based Pseudo-VCG-Mechanism and outputs the effic
     Mip_bounds_tightening = procedure for bound tightening in MIP reformulatio of the DNN-based WDP. Can be 'IA' (Intervall Arithmetic), 'LP' (LP-Reölaxations) or 'False'
     warm_start = boolean determines if a solution to the MIP  of the previous iteration in the PEA should be used as a warm start for the MIP formulation of the DNN-based WDP.
 
-See test_pvm.py for an example of how to use the function PVM.
+See example_pvm.py for an example of how to use the function PVM.
 
 """
 

@@ -18,7 +18,7 @@ WDP has the following functionalities:
     4.METHOD: print_optimal_allocation(self)
         This method printes the optimal allocation x_star in a nice way.
 
-See Test_Class_WDP_github.py for an example of how to use the class WDP.
+See example_Class_WDP_github.py for an example of how to use the class WDP.
 """
 
 # Libs
