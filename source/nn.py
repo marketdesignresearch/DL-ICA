@@ -98,7 +98,7 @@ class NN:
         predictions = Dense(1, activation='relu')(x)
         model = Model(inputs=inputs, outputs=predictions)
         # ADAM = adaptive moment estimation a first-order gradient-based optimization algorithm
-        ADAM = optimizers.Adam(lr=lr, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
+        ADAM = optimizers.Adam(lr=lr, beta_1=0.9, beta_2=0.999, decay=0.0, amsgrad=False)
         # compile the model and define the loss function
         model.compile(optimizer=ADAM, loss='mean_absolute_error')
         # -------------------------------------------------- NN Architecture -------------------------------------------------#
@@ -111,12 +111,12 @@ class NN:
         self.Y_valid = Y_valid
         # fit model and validate on test set
         if (self.X_valid is not None) and (self.Y_valid is not None):
-            self.history = self.model.fit(self.X_train, self.Y_train, sample_weight=sample_weight, verbose=0, epochs=epochs, batch_size=batch_size, validation_data=(self.X_valid, self.Y_valid))
+            self.history = self.model.fit(x=self.X_train, y=self.Y_train, verbose=0, sample_weight=sample_weight, epochs=epochs, batch_size=batch_size, validation_data=(self.X_valid, self.Y_valid))
             # get loss infos
             loss = self.loss_info(batch_size, plot=False)
         # fit model without validating on test set
         else:
-            self.history = self.model.fit(self.X_train, self.Y_train, sample_weight=sample_weight, verbose=0, epochs=epochs, batch_size=batch_size)
+            self.history = self.model.fit(x=self.X_train, y=self.Y_train, verbose=0, sample_weight=sample_weight, epochs=epochs, batch_size=batch_size)
             # get loss infos
             loss = self.loss_info(batch_size, plot=False)
         return(loss)
@@ -130,17 +130,17 @@ class NN:
         # if scaler attribute was specified
         if self.scaler is not None:
             # errors on the training set
-            tr = self.model.evaluate(self.X_train, self.Y_train, verbose=0)
+            tr = self.model.evaluate(x=self.X_train, y=self.Y_train, verbose=0)
             tr_orig = float(self.scaler.inverse_transform([[tr]]))
             if (self.X_valid is not None) and (self.Y_valid is not None):
                 # errors on the test set
-                val = self.model.evaluate(self.X_valid, self.Y_valid, verbose=0)
+                val = self.model.evaluate(x=self.X_valid, y=self.Y_valid, verbose=0)
                 val_orig = float(self.scaler.inverse_transform([[val]]))
         # data has not been scaled by scaler, i.e., scaler == None
         else:
-            tr_orig = self.model.evaluate(self.X_train, self.Y_train, verbose=0)
+            tr_orig = self.model.evaluate(x=self.X_train, y=self.Y_train, verbose=0)
             if (self.X_valid is not None) and (self.Y_valid is not None):
-                val_orig = self.model.evaluate(self.X_valid, self.Y_valid, verbose=0)
+                val_orig = self.model.evaluate(x=self.X_valid, y=self.Y_valid, verbose=0)
         # print errors
         if tr is not None:
             logging.debug('Train Error Scaled %s', tr)
@@ -154,9 +154,9 @@ class NN:
         # plot results
         if plot is True:
             # recalculate predicted values for the training set and test set, which are used for the true vs. predicted plot.
-            Y_hat_train = self.model.predict(self.X_train, batch_size=batch_size).flatten()
+            Y_hat_train = self.model.predict(x=self.X_train, batch_size=batch_size).flatten()
             if (self.X_valid is not None) and (self.Y_valid is not None):
-                Y_hat_valid = self.model.predict(self.X_valid, batch_size=batch_size).flatten()
+                Y_hat_valid = self.model.predict(x=self.X_valid, batch_size=batch_size).flatten()
             fig, ax = plt.subplots(1, 2)
             plt.subplots_adjust(hspace=0.3)
             if scale == 'log':

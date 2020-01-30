@@ -55,7 +55,7 @@ model = NN(model_parameters=NN_parameters[key], X_train=value[0], Y_train=value[
 # initialize model
 model.initialize_model(regularization_type=regularization_type)
 # fit model and store losses
-loss = model.fit(epochs=epochs, batch_size=batch_size, X_valid=None, Y_valid=None)
+loss = model.fit(epochs=epochs, batch_size=batch_size, X_valid=None, Y_valid=None, sample_weight=None)
 loss  # loss info (tr, val, tr_orig, val_orig)
 model.history.history['loss']  # loss evolution over epochs
 model.loss_info(batch_size=n_train, plot=True, scale='log')  # loss info with plots
