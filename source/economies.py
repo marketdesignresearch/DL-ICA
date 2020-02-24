@@ -93,7 +93,7 @@ import sys
 import numpy as np
 import time
 import re
-from keras import backend as K
+from tensorflow.keras.backend import clear_session
 from collections import OrderedDict
 import logging
 # CPLEX: Here, DOcplex is used for solving the deep neural network-based Winner Determination Problem.
@@ -220,7 +220,7 @@ class Economies:
     def reset_keras_models(self):
         delattr(self, 'NN_models')
         self.NN_models = OrderedDict(list((key, OrderedDict(list((bidder_id, None) for bidder_id in value))) for key, value in self.economies_names.items()))
-        K.clear_session()
+        clear_session()
 
     def update_bids(self, economy_key, bidder_id, bundle_to_add, value_to_add):
         D = self.elicited_bids[economy_key]
@@ -360,7 +360,7 @@ class Economies:
                 if attempt == 4:
                     X.Mip.export_as_lp(basename='UNSOLVED MIP in Iteration {} from economy'.format(self.iteration[economy_key]) + re.sub('[{}]', '', economy_key), hide_user_names=False)
                     sys.exit('STOP, not solved succesfully in {} attempts'.format(attempt+1))
-                K.clear_session()
+                clear_session()
                 # LINE 4: RE-FITTING STEP
                 logging.debug('Refitting DNNs:')
                 if self.sample_weights_on:

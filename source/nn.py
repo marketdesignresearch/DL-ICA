@@ -36,9 +36,7 @@ See example_nn.py for an example of how to use the class NN.
 import numpy as np
 import logging
 import matplotlib.pyplot as plt
-from keras import regularizers, optimizers
-from keras.models import Model
-from keras.layers import Input, Dense, Dropout
+from tensorflow.keras import models,layers,regularizers,optimizers
 
 
 __author__ = 'Jakob Weissteiner'
@@ -74,7 +72,7 @@ class NN:
         dropout = bool(dropout)
         # -------------------------------------------------- NN Architecture -------------------------------------------------#
         # define input layer
-        inputs = Input(shape=(self.X_train.shape[1], ))
+        inputs = layers.Input(shape=(self.X_train.shape[1], ))
         # set regularization
         if regularization_type == 'l2' or regularization_type is None:
             REG = regularizers.l2(r)
@@ -86,17 +84,17 @@ class NN:
             logging.debug('l1&l2 regularization')
             REG = regularizers.l1_l2(r)
         # first hidden layer
-        x = Dense(dim[0], kernel_regularizer=REG, bias_regularizer=REG, activation='relu')(inputs)
+        x = layers.Dense(dim[0], kernel_regularizer=REG, bias_regularizer=REG, activation='relu')(inputs)
         if dropout is True:
-            x = Dropout(rate=dp)(x)
+            x = layers.Dropout(rate=dp)(x)
         # remaining hidden layer
         for k in range(1, number_of_hidden_layers):
-            x = Dense(dim[k], kernel_regularizer=REG, bias_regularizer=REG, activation='relu')(x)
+            x = layers.Dense(dim[k], kernel_regularizer=REG, bias_regularizer=REG, activation='relu')(x)
             if dropout is True:
-                x = Dropout(rate=dp)(x)
+                x = layers.Dropout(rate=dp)(x)
         # final output layer
-        predictions = Dense(1, activation='relu')(x)
-        model = Model(inputs=inputs, outputs=predictions)
+        predictions = layers.Dense(1, activation='relu')(x)
+        model = models.Model(inputs=inputs, outputs=predictions)
         # ADAM = adaptive moment estimation a first-order gradient-based optimization algorithm
         ADAM = optimizers.Adam(lr=lr, beta_1=0.9, beta_2=0.999, decay=0.0, amsgrad=False)
         # compile the model and define the loss function
