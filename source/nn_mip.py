@@ -4,7 +4,7 @@
 """
 FILE DESCRIPTION:
 
-This file implements the class NN_MIP (Neural Network Mixed Integer Program). This class is used for solving the deep neural network-based Winner Determination Problem as described in the paper Deep Learning-powered Iterative Combinatorial Auctions
+This file implements the class NNMIP (Neural Network Mixed Integer Program). This class is used for solving the deep neural network-based Winner Determination Problem as described in the paper Deep Learning-powered Iterative Combinatorial Auctions
 Link: https://arxiv.org/abs/1907.05771 (Section 4).
 NN_MIP has the following functionalities:
     0.CONSTRUCTOR: __init__(self, models, L=None)
