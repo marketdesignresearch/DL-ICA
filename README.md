@@ -3,7 +3,7 @@
 This is a piece of software used for computing the outcome of the Pseudo VCG Mechanism (PVM) based on deep neural networks (DNNs). The algorithm is described in detail in the following paper:
 
 **Deep Learning-powered Iterative Combinatorial Auctions**  
-Jakob Weissteiner and Sven Seuken. In Proceedings of the Thirty-fourth AAAI Conference on Artificial Intelligence (AAAI-20), New York, NY, February 2020. Forthcoming. Working paper version from Dec 2019: [[pdf](https://arxiv.org/pdf/1907.05771.pdf)]
+Jakob Weissteiner and Sven Seuken. In Proceedings of the Thirty-fourth AAAI Conference on Artificial Intelligence (AAAI-20), New York, NY, February 2020. Working paper version from Dec 2019: [[pdf](https://arxiv.org/pdf/1907.05771.pdf)]
 
 If you use this software for academic purposes, please cite the above in your work. Bibtex for this reference is as follows:
 
@@ -11,7 +11,7 @@ If you use this software for academic purposes, please cite the above in your wo
 @InProceedings{weissteiner2019workingpaper,
     author = {Weissteiner, Jakob and Seuken, Sven},
     title = {Deep Learning-powered Iterative Combinatorial Auctions},
-    booktitle = {Proceedings of the 34th AAAI Conference on Artificial Intelligence (AAAI-20). Forthcoming.},
+    booktitle = {Proceedings of the 34th AAAI Conference on Artificial Intelligence (AAAI-20).},
     year = {2020},
 }
 ```
@@ -83,7 +83,7 @@ sample_weight_on = False  # no datapoint-specific weights
 sample_weight_scaling = None  # no datapoint-specific weights
 ```
 
-Then, we define parameters for the MIPs feinded in our paper in (OP2). We can select the following three different methods (presented in increasing order of runtime) for tightening the bounds of the big-M constraints:
+Then, we define parameters for the MIPs defined in our paper in (OP2). We can select the following three different methods (presented in increasing order of runtime) for tightening the bounds of the big-M constraints:
 i.) Mip_bounds_tightening = False, no bound tightening, global L big-m constant.
 ii.) Mip_bounds_tightening = 'IA', interval arithmetic (box relaxations).
 ii.) Mip_bounds_tightening = 'LP', interval arithmetic (box relaxations) + linear programming relxations per node depending on all previous nodes.
@@ -94,8 +94,8 @@ Mip_bounds_tightening = 'IA'   # Bound tightening: False ,'IA' or 'LP'
 warm_start = True  # boolean, should previous solution be used as a warm start.
 ```
 
-Next, we define PVM specific parameters. The number of initial bundle-value pairs sampled all across bidders is defined as c_0:=caps[0].
-This initial bundle-value pairs are the same for all bidders. The maximal number of possible value queries per elicitation thread is defeined as c_e:=caps[1].
+Next, we define PVM specific parameters. The number of initial bundle-value pairs sampled across bidders is defined as c_0:=caps[0].
+This initial bundle-value pairs are the same for all bidders. The maximal number of possible value queries per elicitation thread is defined as c_e:=caps[1].
 This results in a maxmium possible number of total value queries in PVM per bidder of (in GSVM  N:=7): c_0+N*c_e.
 
 ```python
