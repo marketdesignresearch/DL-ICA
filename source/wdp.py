@@ -13,9 +13,11 @@ WDP has the following functionalities:
         This method initializes the winner determination problem as a MIP.
     2.METHOD: solve_mip(self)
         This method solves the MIP of the winner determination problem and sets the optimal allocation.
-    3.METHOD: __repr__(self)
+    3.METHOD: log_solve_details
+        This method logs Solution details.
+    4.METHOD: __repr__(self)
         Echoe on on your python shell when it evaluates an instances of this class.
-    4.METHOD: print_optimal_allocation(self)
+    5.METHOD: print_optimal_allocation(self)
         This method printes the optimal allocation x_star in a nice way.
 
 See example_Class_WDP_github.py for an example of how to use the class WDP.
@@ -52,7 +54,7 @@ class WDP:
         self.z = {}  # decision variables. z(i,k) = 1 <=> bidder i gets the kth bundle out of 1,...,K[i] from his set of bundle-value pairs
         self.x_star = np.zeros((self.N, self.M))  # optimal allocation of the winner determination problem
 
-    def initialize_mip(self, verbose=False):
+    def initialize_mip(self, verbose=0):
 
         for i in range(0, self.N):  # over bidders i \in N
             # add decision variables
@@ -68,22 +70,32 @@ class WDP:
         objective = self.Mip.sum(self.z[(i, k)]*self.bids[i][k, self.M] for i in range(0, self.N) for k in range(0, self.K[i]))
         self.Mip.maximize(objective)
 
-        if verbose is True:
+        if verbose==1:
             for m in range(0, self.Mip.number_of_constraints):
                     logging.debug('({}) %s'.format(m), self.Mip.get_constraint_by_index(m))
-        logging.debug('\nMip initialized')
+            logging.debug('\nMip initialized')
 
-    def solve_mip(self):
+    def solve_mip(self, verbose=0):
         self.Mip.solve()
-        logging.debug(self.Mip.get_solve_status())
-        logging.debug(self.Mip.get_solve_details())
+        if verbose==1:
+            self.log_solve_details(self.Mip)
         # set the optimal allocation
         for i in range(0, self.N):
             for k in range(0, self.K[i]):
                 if self.z[(i, k)].solution_value != 0:
                     self.x_star[i, :] = self.z[(i, k)].solution_value*self.bids[i][k, :-1]
 
-    def __repr__(self):
+    def log_solve_details(self, solved_mip):
+        details = solved_mip.get_solve_details()
+        logging.debug('Status  : %s', details.status)
+        logging.debug('Time    : %s sec',round(details.time))
+        logging.debug('Problem : %s',details.problem_type)
+        logging.debug('Rel. Gap: {} %'.format(round(details.mip_relative_gap,5)))
+        logging.debug('N. Iter : %s',details.nb_iterations)
+        logging.debug('Hit Lim.: %s',details.has_hit_limit())
+        logging.debug('Objective Value: %s', solved_mip.objective_value)
+
+    def summary(self):
         print('################################ OBJECTIVE ################################')
         try:
             print('Objective Value: ', self.Mip.objective_value, '\n')
