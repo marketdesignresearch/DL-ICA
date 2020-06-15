@@ -43,7 +43,7 @@ logging.basicConfig(level=logging.WARNING, format='%(asctime)s:               %(
 # M = 18  # number of items
 # bidder_types = 2
 # bidder_ids = list(range(0, 6))
-# scaler = False
+# scaler = None
 # print('\n------------------------ SATS parameters ------------------------')
 # print('Value Model:', SATS_domain_name)
 # print('Number of Bidders: ', N)
@@ -58,7 +58,7 @@ N = 7  # number of bidders
 M = 18  # number of items
 bidder_types = 2
 bidder_ids = list(range(0, 7))
-scaler = False
+scaler = None
 print('\n------------------------ SATS parameters ------------------------')
 print('Value Model: ', SATS_domain_name)
 print('Number of Bidders: ', N)

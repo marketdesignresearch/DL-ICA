@@ -49,15 +49,28 @@ __email__ = 'weissteiner@ifi.uzh.ch'
 __status__ = 'Dev'
 
 #%% MLCA MECHANISM SINGLE RUN
-def mlca_mechanism(SATS_domain_name, SATS_auction_instance_seed, Qinit, Qmax, Qround, NN_parameters, MIP_parameters, scaler,
-                   init_bids_and_fitted_scaler=[None,None], return_allocation=False, return_payments=False, calc_efficiency_per_iteration=False):
+def mlca_mechanism(SATS_domain_name=None, SATS_auction_instance_seed=None, Qinit=None, Qmax=None, Qround=None, NN_parameters=None, MIP_parameters=None, scaler=None,
+                   init_bids_and_fitted_scaler=[None,None], return_allocation=False, return_payments=False, calc_efficiency_per_iteration=False, configdict=None):
 
     start = datetime.now()
+    #can also specify input as witha dict of an configuration
+    if configdict is not None:
+        SATS_domain_name = configdict['SATS_domain_name']
+        SATS_auction_instance_seed = configdict['SATS_auction_instance_seed']
+        Qinit = configdict['Qinit']
+        Qmax = configdict['Qmax']
+        Qround = configdict['Qround']
+        NN_parameters = configdict['NN_parameters']
+        MIP_parameters = configdict['MIP_parameters']
+        scaler = configdict['scaler']
+        init_bids_and_fitted_scaler = configdict['init_bids_and_fitted_scaler']
+        return_allocation = configdict['return_allocation']
+        return_payments = configdict['return_payments']
+        calc_efficiency_per_iteration = configdict['calc_efficiency_per_iteration']
+
     logging.warning('START MLCA:')
     logging.warning('-----------------------------------------------')
     OUTPUT={}
-    if not scaler:
-        scaler = None
     logging.warning('Model: %s',SATS_domain_name)
     logging.warning('Seed SATS Instance: %s',SATS_auction_instance_seed)
     logging.warning('Qinit: %s',Qinit)
