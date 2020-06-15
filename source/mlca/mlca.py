@@ -38,7 +38,7 @@ from tensorflow.keras.backend import clear_session
 # Own Modules
 from source.pysats import PySats
 from source.mlca.mlca_economies import MLCA_Economies
-from source.util import key_to_int, timediff_d_h_m_s
+from source.mlca.mlca_util import key_to_int, timediff_d_h_m_s
 
 __author__ = 'Jakob Weissteiner'
 __copyright__ = 'Copyright 2019, Deep Learning-powered Iterative Combinatorial Auctions: Jakob Weissteiner and Sven Seuken'

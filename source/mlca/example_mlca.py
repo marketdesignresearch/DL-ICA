@@ -31,14 +31,11 @@ for handler in logging.root.handlers[:]:
 
 # log debug to console
 #logging.basicConfig(level=logging.DEBUG, format='%(asctime)s:               %(message)s', datefmt='%H:%M:%S')
-logging.basicConfig(level=logging.INFO, format='%(asctime)s:               %(message)s', datefmt='%H:%M:%S')
-#logging.basicConfig(level=logging.WARNING, format='%(asctime)s:               %(message)s', datefmt='%H:%M:%S')
+#logging.basicConfig(level=logging.INFO, format='%(asctime)s:               %(message)s', datefmt='%H:%M:%S')
+logging.basicConfig(level=logging.WARNING, format='%(asctime)s:               %(message)s', datefmt='%H:%M:%S')
 #%% Define parameters
 
-#TODO test mlca, on cluster
-
-
-# (1) Value model parameters
+# (1) SATS Value model parameters
 
 # =============================================================================
 # SATS_domain_name = 'LSVM'
@@ -186,7 +183,7 @@ for key,v in MIP_parameters.items():
 
 # (4) MLCA specific parameters
 Qinit = 30
-Qmax = 58
+Qmax = 37
 Qround = N
 SATS_auction_instance_seed = 10
 
@@ -206,6 +203,7 @@ res2 = mlca_mechanism(SATS_domain_name=SATS_domain_name, SATS_auction_instance_s
                         Qround=Qround, NN_parameters=NN_parameters, MIP_parameters=MIP_parameters, scaler=scaler, init_bids_and_fitted_scaler=[B,None],
                         return_allocation=True, return_payments=True, calc_efficiency_per_iteration=True)
 #%% Result analysis
+
 # TODO: code result analysis
 # prepare results
 EFF = RESULT[1][0]

@@ -199,4 +199,4 @@ class MLCA_NN:
 # %%
 
 
-print('MLCA NN Class imported')
+print('Class MLCA_NN imported')

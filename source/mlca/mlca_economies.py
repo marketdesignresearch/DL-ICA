@@ -89,10 +89,10 @@ import docplex
 # http://ibmdecisionoptimization.github.io/docplex-doc/mp/docplex.mp.model.html
 
 # Own Modules
-import source.util as util
+import source.mlca.mlca_util as util
 from source.mlca.mlca_nn import MLCA_NN
 from source.mlca.mlca_nn_mip import MLCA_NNMIP
-from source.wdp import WDP
+from source.mlca.mlca_wdp import MLCA_WDP
 
 
 __author__ = 'Jakob Weissteiner'
@@ -415,7 +415,7 @@ class MLCA_Economies:
         bidder_names = list(elicited_bids.keys())
         if verbose==1: logging.debug('Solving WDP based on elicited bids for bidder: %s', bidder_names)
         elicited_bundle_value_pairs = [np.concatenate((bids[0], bids[1].reshape(-1, 1)), axis=1) for bidder, bids in elicited_bids.items()] #transform self.elicited_bids into format for WDP class
-        wdp = WDP(elicited_bundle_value_pairs)
+        wdp = MLCA_WDP(elicited_bundle_value_pairs)
         wdp.initialize_mip(verbose=0)
         wdp.solve_mip(verbose)
         #TODO: check solution formater
@@ -472,4 +472,4 @@ class MLCA_Economies:
         revenue = sum([self.mlca_payments[i] for i in self.bidder_names])
         logging.info('Revenue: {} | {}% of SCW in efficienct allocation\n'.format(revenue, revenue/self.SATS_auction_instance_scw))
 # %%
-print('MLCA_Economies imported')
+print('Class MLCA_Economies imported')

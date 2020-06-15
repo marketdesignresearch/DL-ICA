@@ -155,7 +155,8 @@ class MLCA_NNMIP:
         logging.info('Rel. Gap: {} %'.format(round(details.mip_relative_gap,5)))
         logging.debug('N. Iter : %s',details.nb_iterations)
         logging.debug('Hit Lim.: %s',details.has_hit_limit())
-        logging.debug('Objective Value: %s\n', solved_mip.objective_value)
+        logging.debug('Objective Value: %s', solved_mip.objective_value)
+        logging.info('\n')
 
     def summary(self):
         print('################################ OBJECTIVE ################################')
@@ -419,4 +420,4 @@ class MLCA_NNMIP:
             zeros = zeros + sum([np.sum(x == 0) for x in v])
         print('Number of Upper bounds equal to 0: ', zeros)
 # %%
-print('MLCA NN_MIP Class imported')
+print('Class MLCA_NN_MIP imported')
