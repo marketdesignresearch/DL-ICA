@@ -3,7 +3,7 @@
 This is a piece of software used for computing the outcome of the Pseudo VCG Mechanism (PVM) based on deep neural networks (DNNs). The algorithm is described in detail in the following paper:
 
 **Deep Learning-powered Iterative Combinatorial Auctions**  
-Jakob Weissteiner and Sven Seuken. In Proceedings of the Thirty-fourth AAAI Conference on Artificial Intelligence (AAAI-20), New York, NY, February 2020. Working paper version from Dec 2019: [[pdf](https://arxiv.org/pdf/1907.05771v5.pdf)]
+Jakob Weissteiner and Sven Seuken. In Proceedings of the Thirty-fourth AAAI Conference on Artificial Intelligence (AAAI-20), New York, NY, February 2020. Working paper version from Oct 2020: [[pdf](https://arxiv.org/pdf/1907.05771v5.pdf)]
 
 If you use this software for academic purposes, please cite the above in your work. Bibtex for this reference is as follows:
 
