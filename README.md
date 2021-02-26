@@ -8,7 +8,7 @@ Jakob Weissteiner and Sven Seuken. In Proceedings of the Thirty-fourth AAAI Conf
 If you use this software for academic purposes, please cite the above in your work. Bibtex for this reference is as follows:
 
 ```tex
-@InProceedings{weissteiner2019workingpaper,
+@InProceedings{weissteiner2020deep,
     author = {Weissteiner, Jakob and Seuken, Sven},
     title = {Deep Learning-powered Iterative Combinatorial Auctions},
     booktitle = {Proceedings of the 34th AAAI Conference on Artificial Intelligence (AAAI-20).},
