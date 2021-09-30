@@ -116,3 +116,8 @@ RESULT = PVM(
 ```
 
 The full example can be found [here](tests/test_pvm.py).
+
+
+## Contact
+
+Maintained by Jakob Weissteiner (weissteiner)
