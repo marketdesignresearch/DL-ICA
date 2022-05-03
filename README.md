@@ -22,8 +22,8 @@ If you use this software for academic purposes, please cite the above in your wo
 * Java 8 (or later)
   * Java environment variables set as described [here](https://pyjnius.readthedocs.io/en/stable/installation.html#installation)
 * JAR-files ready (they should already be)
-  * CPLEX (>=12.8.0): The file cplex.jar is provided in source/lib.
-  * [SATS](http://spectrumauctions.org/) (>=0.6.4): The file sats.jar is provided in source/lib.
+  * CPLEX (12.8.0): The file cplex.jar is provided in source/lib.
+  * [SATS](http://spectrumauctions.org/) (0.6.4): The file sats.jar is provided in source/lib.
 * CPLEX Python API installed as described [here](https://www.ibm.com/support/knowledgecenter/SSSA5P_12.8.0/ilog.odms.cplex.help/CPLEX/GettingStarted/topics/set_up/Python_setup.html)
 
 ## Dependencies
