@@ -33,6 +33,22 @@ logging.basicConfig(level=logging.DEBUG, format='%(message)s', filemode='w')
 
 # (1) Value model parameters
 
+# GSVM DOMAIN
+model_name = 'GSVM'
+N = 7  # number of bidders
+M = 18  # number of items
+bidder_types = 2
+bidder_ids = list(range(0, 7))
+scaler = False
+print('\n------------------------ INFO  PVM RUN ------------------------')
+print('Value Model: ', model_name)
+print('Number of Bidders: ', N)
+print('Number of BidderTypes: ', bidder_types)
+print('Number of Items: ', M)
+print('Scaler: ', scaler)
+
+# LSVM DOMAIN
+'''
 model_name = 'LSVM'
 N = 6  # number of bidders
 M = 18  # number of items
@@ -45,37 +61,22 @@ print('Number of Bidders: ', N)
 print('Number of BidderTypes: ', bidder_types)
 print('Number of Items: ', M)
 print('Scaler: ', scaler)
+'''
 
-# =============================================================================
-# # GSVM
-# model_name = 'GSVM'
-# N = 7  # number of bidders
-# M = 18  # number of items
-# bidder_types = 2
-# bidder_ids = list(range(0, 7))
-# scaler = False
-# print('\n------------------------ INFO  PVM RUN ------------------------')
-# print('Value Model: ', model_name)
-# print('Number of Bidders: ', N)
-# print('Number of BidderTypes: ', bidder_types)
-# print('Number of Items: ', M)
-# print('Scaler: ', scaler)
-# =============================================================================
-
-# =============================================================================
-# # MRVM
-# model_name = 'MRVM'
-# N = 10  # number of bidders
-# M = 98  # number of items
-# bidder_types = 3
-# bidder_ids = list(range(0, 10))
-# scaler = MinMaxScaler(feature_range=(0, 500))
-# print('\nValue Model: ', model_name)
-# print('Number of Bidders: ', N)
-# print('Number of BidderTypes: ', bidder_types)
-# print('Number of Items: ', M)
-# print('Scaler: ', scaler)
-# =============================================================================
+# MRVM DOMAIN
+'''
+model_name = 'MRVM'
+N = 10  # number of bidders
+M = 98  # number of items
+bidder_types = 3
+bidder_ids = list(range(0, 10))
+scaler = MinMaxScaler(feature_range=(0, 500))
+print('\nValue Model: ', model_name)
+print('Number of Bidders: ', N)
+print('Number of BidderTypes: ', bidder_types)
+print('Number of Items: ', M)
+print('Scaler: ', scaler)
+'''
 
 # (2) Neural Network Parameters
 epochs = 300
@@ -147,7 +148,7 @@ print('Mip_bounds_tightening:', Mip_bounds_tightening)
 print('Warm_start:', warm_start)
 
 # (4) PVM specific parameters
-caps = [40, 10]  # [c_0, c_e] with initial bids c0 and maximal number of value queries ce
+caps = [40, 2]  # [c_0, c_e] with initial bids c0 and maximal number of value queries ce
 seed_instance = 12
 min_iteration = 1
 print('\n------------------------ PVM  parameters ------------------------')
@@ -157,9 +158,20 @@ print('Seed: ', seed_instance)
 print('min_iteration:', min_iteration)
 # %% Start DNN-based PVM
 
-RESULT = pvm(scaler=scaler, caps=caps, L=L, parameters=DNN_parameters, epochs=epochs, batch_size=batch_size, model_name=model_name, sample_weight_on=sample_weight_on,
-             sample_weight_scaling=sample_weight_scaling, min_iteration=min_iteration, seed_instance=seed_instance, regularization_type=regularization_type,
-             Mip_bounds_tightening=Mip_bounds_tightening, warm_start=warm_start)
+RESULT = pvm(scaler=scaler,
+             caps=caps,
+             L=L,
+             parameters=DNN_parameters,
+             epochs=epochs,
+             batch_size=batch_size,
+             model_name=model_name,
+             sample_weight_on=sample_weight_on,
+             sample_weight_scaling=sample_weight_scaling,
+             min_iteration=min_iteration,
+             seed_instance=seed_instance,
+             regularization_type=regularization_type,
+             Mip_bounds_tightening=Mip_bounds_tightening,
+             warm_start=warm_start)
 
 
 # %% Result analysis
