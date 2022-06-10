@@ -34,6 +34,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(message)s', filemode='w')
 # (1) Value model parameters
 
 # GSVM DOMAIN
+'''
 model_name = 'GSVM'
 N = 7  # number of bidders
 M = 18  # number of items
@@ -46,9 +47,8 @@ print('Number of Bidders: ', N)
 print('Number of BidderTypes: ', bidder_types)
 print('Number of Items: ', M)
 print('Scaler: ', scaler)
-
-# LSVM DOMAIN
 '''
+# LSVM DOMAIN
 model_name = 'LSVM'
 N = 6  # number of bidders
 M = 18  # number of items
@@ -61,7 +61,6 @@ print('Number of Bidders: ', N)
 print('Number of BidderTypes: ', bidder_types)
 print('Number of Items: ', M)
 print('Scaler: ', scaler)
-'''
 
 # MRVM DOMAIN
 '''
@@ -85,19 +84,19 @@ regularization_type = 'l1_l2'  # 'l1', 'l2' or 'l1_l2'
 # national bidder LSVM: id=0, GSVM:id=6, MRVM:id=7,8,9
 regularization_N = 0.00001
 learning_rate_N = 0.01
-layer_N = [16, 16]
+layer_N = [10, 10, 10]
 dropout_N = True
 dropout_prob_N = 0.05
 # regional bidders LSVM: id=1-5, GSVM:id=0-5, MRVM:id=3,4,5,6
 regularization_R = 0.00001
 learning_rate_R = 0.01
-layer_R = [16, 16]
+layer_R = [32, 32]
 dropout_R = True
 dropout_prob_R = 0.05
 # local bidders MRVM:id=0,1,2
 regularization_L = 0.00001
 learning_rate_L = 0.01
-layer_L = [10, 10]
+layer_L = [16, 16]
 dropout_L = True
 dropout_prob_L = 0.05
 DNN_parameters = {}
